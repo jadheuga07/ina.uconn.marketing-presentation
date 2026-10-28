@@ -2179,7 +2179,7 @@ h3{font-size:var(--h3);line-height:1.2;color:var(--navy)}
       <div class="diagram fscene in" data-nofrag style="--i:3"><svg viewBox="0 0 1600 500" preserveAspectRatio="xMidYMid meet" id="finalScene" role="img" aria-label="The students present to a board of a mentor, INA and a professional; then the presentation becomes a final report, which earns an INA certificate and is published on the website"></svg></div>
       <div class="steprow"><div class="caption in" data-nofrag style="--i:4" id="fsCap"><span class="k"></span><span class="t"></span></div>
         <div class="bstep in" style="--i:5"><div class="bran mini" data-mood="happy"></div><div class="bst"><span class="bsl">Brandon, step 4</span><p>His team presents the pitch and earns an INA certificate.</p></div><p class="unlock"><s>No experience</s> <em class="nw">A real project</em></p></div></div>
-      <aside class="nt">The team presents the finished project to a board of the mentor, INA and a professional, writes the final report, and earns an INA certificate. Last tap: his team presents the pitch and earns an INA certificate. No experience becomes a real project.</aside>
+      <aside class="nt">The team presents the finished project to a board of the mentor, INA and a professional, writes the final report, and earns an INA certificate. Last tap: his team presents the pitch and earns an INA certificate. No experience becomes a real project. When the report goes on the website, the paper certificate appears on the left: every member receives a printed certificate with their name, the project, and the signatures of their mentor and INA. That is what gives the experience credibility with a recruiter.</aside>
     </section>
 
         <section class="slide story" data-sec="02" data-title="The interview" data-min="1" id="interviewSl">
@@ -2783,7 +2783,7 @@ function person(p,x,by,col,o){o=o||{};var g=mk('g',{'class':'pp'+(o.cls?' '+o.cl
   var C=[['Step 4','The board is ready: the team’s mentor, INA and a professional.'],
          ['Present','The team presents the finished project to the board.'],
          ['Report','The team writes the final report and earns an INA certificate.'],
-         ['Publish','The final report goes on the website, under each member’s profile.']];
+         ['Publish','The final report goes on the website, and each member receives a paper certificate signed by their mentor and INA.']];
   function cap_(i){K.textContent=C[i][0];T.textContent=C[i][1];T.style.animation='none';void T.offsetWidth;T.style.animation='';}
   var vbT=null,vbCur=[0,0,1600,500];
   function setVb(t,instant){cancelAnimationFrame(vbT);var from=vbCur.slice();if(instant||reduce){vbCur=t;svg.setAttribute('viewBox',t.join(' '));return;}
@@ -3055,5 +3055,52 @@ cur=start; go(start,'fresh');
     var dt=Math.max(1,now-lastT);vel=0.8*vel+0.2*((t.clientY-lastY)/s/dt);lastY=t.clientY;lastT=now;},{passive:true});
   st.addEventListener('touchend',function(){if(!eng||!sl){sl=null;return;}var el=sl;eng=false;sl=null;var v=vel*16;
     (function f(){if(Math.abs(v)<0.3)return;el.scrollTop-=v;v*=0.95;raf=requestAnimationFrame(f);})();},{passive:true});
+})();
+</script>
+<style>/* step 4: paper certificate */
+#finalScene .fs-cert{opacity:0;transform:translateY(34px) scale(.86);transform-origin:50% 50%;transition:opacity .6s ease,transform .5s ease}
+#finalScene.p3 .fs-cert{opacity:1;transform:none;transition:opacity .7s ease 1.5s,transform .9s cubic-bezier(.34,1.56,.64,1) 1.5s}
+#finalScene .fs-seal{opacity:0;transform:scale(1.8);transform-origin:50% 50%;transition:opacity .2s ease,transform .2s ease}
+#finalScene.p3 .fs-seal{opacity:1;transform:none;transition:opacity .3s ease 2.4s,transform .45s cubic-bezier(.34,1.56,.64,1) 2.4s}
+#finalScene.snap .fs-cert,#finalScene.snap .fs-seal{transition:none!important}
+#finalScene .fc-org{fill:#1E2761;font-size:13px;font-weight:800;letter-spacing:3px;text-anchor:middle}
+#finalScene .fc-h{fill:#1E2761;font-family:var(--display);font-size:36px;font-weight:700;text-anchor:middle}
+#finalScene .fc-s{fill:#4A5270;font-size:15px;text-anchor:middle}
+#finalScene .fc-n{fill:#1E2761;font-family:var(--display);font-style:italic;font-size:30px;font-weight:600;text-anchor:middle}
+#finalScene .fc-p{fill:#1A1F3A;font-size:16px;font-weight:700;text-anchor:middle}
+#finalScene .fc-sig{fill:#1E2761;font-size:14px;font-weight:800;text-anchor:middle}
+#finalScene .fc-role{fill:#6B7280;font-size:12px;font-weight:600;text-anchor:middle}
+#finalScene .fc-seal{fill:#1E2761;font-family:var(--display);font-size:19px;font-weight:700;text-anchor:middle;dominant-baseline:central}
+</style>
+<script>
+/* step 4: paper certificate, signed by the mentor and INA */
+(function(){var svg=document.getElementById('finalScene');if(!svg||svg.querySelector('.fs-cert'))return;
+var NS='http://www.w3.org/2000/svg';function mk(t,a,p,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt)e.textContent=txt;(p||svg).appendChild(e);return e;}
+var g=mk('g',{'class':'fs-cert','aria-label':'Paper certificate signed by the mentor and by INA'});
+var X=40,Y=40,W=540,H=420,cx=X+W/2;
+mk('rect',{x:X+8,y:Y+10,width:W,height:H,rx:6,fill:'#1E2761',opacity:.12},g);
+mk('rect',{x:X,y:Y,width:W,height:H,rx:6,fill:'#FDFBF5',stroke:'#1E2761','stroke-width':4},g);
+mk('rect',{x:X+14,y:Y+14,width:W-28,height:H-28,rx:3,fill:'none',stroke:'#E8A33D','stroke-width':2},g);
+mk('text',{x:cx,y:Y+52,'class':'fc-org'},g,'INTERNATIONAL NETWORKING ASSOCIATION · UCONN');
+mk('text',{x:cx,y:Y+100,'class':'fc-h'},g,'Certificate of Completion');
+mk('line',{x1:cx-60,y1:Y+118,x2:cx+60,y2:Y+118,stroke:'#E8A33D','stroke-width':3},g);
+mk('text',{x:cx,y:Y+148,'class':'fc-s'},g,'This certifies that');
+mk('text',{x:cx,y:Y+186,'class':'fc-n'},g,'Member name');
+mk('line',{x1:cx-150,y1:Y+198,x2:cx+150,y2:Y+198,stroke:'#D5DBEA','stroke-width':2},g);
+mk('text',{x:cx,y:Y+226,'class':'fc-s'},g,'completed the project');
+mk('text',{x:cx,y:Y+252,'class':'fc-p'},g,'Equity research pitch');
+mk('text',{x:cx,y:Y+276,'class':'fc-s'},g,'through the INA Outreach Program, with weekly mentor reviews');
+function sig(x,name,role){
+  mk('path',{d:'M'+(x-62)+' '+(Y+338)+' c10 -24 18 20 28 0 s16 -22 26 4 s14 -18 22 -2 s16 10 26 -8 s10 4 22 2',fill:'none',stroke:'#1E2761','stroke-width':2.2,'stroke-linecap':'round',opacity:.85},g);
+  mk('line',{x1:x-90,y1:Y+352,x2:x+90,y2:Y+352,stroke:'#1E2761','stroke-width':1.5},g);
+  mk('text',{x:x,y:Y+372,'class':'fc-sig'},g,name);
+  mk('text',{x:x,y:Y+390,'class':'fc-role'},g,role);}
+sig(X+130,'Mentor name','Project mentor');
+sig(X+W-130,'INA','International Networking Association');
+var s=mk('g',{'class':'fs-seal'},g);
+mk('path',{d:'M'+(cx-16)+' '+(Y+370)+' l-7 24 l11 -6 l7 9 l5 -25 Z M'+(cx+16)+' '+(Y+370)+' l7 24 l-11 -6 l-7 9 l-5 -25 Z',fill:'#9A5B0B'},s);
+mk('circle',{cx:cx,cy:Y+350,r:32,fill:'#E8A33D'},s);
+mk('circle',{cx:cx,cy:Y+350,r:26,fill:'none',stroke:'#1E2761','stroke-width':1.5,'stroke-dasharray':'3 3'},s);
+mk('text',{x:cx,y:Y+350,'class':'fc-seal'},s,'INA');
 })();
 </script>
